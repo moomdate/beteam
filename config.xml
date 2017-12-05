@@ -3,6 +3,12 @@
     <name>beteam</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+
+    <!--plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="196540610920987" />
+        <variable name="APP_NAME" value="beteam" />
+    </plugin-->
+
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
