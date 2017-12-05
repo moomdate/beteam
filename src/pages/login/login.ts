@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
+import { AngularFireAuth } from "angularfire2/auth";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import * as firebase from 'firebase/app';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,7 +13,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private afAuth: AngularFireAuth, private facebook: Facebook) {
+  }
+
+  loginFacebook() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .then((res) => console.log(res));
   }
 
   ionViewDidLoad() {
