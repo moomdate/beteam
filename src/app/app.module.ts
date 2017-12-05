@@ -7,6 +7,20 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAlVZpgts0jwbFKhklztIzhautl8JGqpQA",
+  authDomain: "beteam-24fb4.firebaseapp.com",
+  databaseURL: "https://beteam-24fb4.firebaseio.com",
+  projectId: "beteam-24fb4",
+  storageBucket: "beteam-24fb4.appspot.com",
+  messagingSenderId: "911957481733"
+};
 @NgModule({
   declarations: [
     MyApp,
@@ -15,7 +29,10 @@ import { LoginPage } from '../pages/login/login';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
