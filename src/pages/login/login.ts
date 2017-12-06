@@ -34,7 +34,7 @@ export class LoginPage {
     else {
       return this.afAuth.auth
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(res => console.log(res));
+        .then(res => console.log(res+"xxx"));
     }
   }
 
