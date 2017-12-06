@@ -20,7 +20,7 @@ export class LoginPage {
 
   ) { 
     var user = firebase.auth().currentUser;
-    if(user==null){
+    if(user==null){ //ถ้ามีการล็อกอิน //ยังไม่ถูก
       this.navCtrl.setRoot(HomePage);
     }
 
