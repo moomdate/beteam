@@ -3,9 +3,8 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { HomePage } from '../../pages/home/home';
 import * as firebase from 'firebase/app';
-
-
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -19,7 +18,13 @@ export class LoginPage {
     private facebook: Facebook,
     private platform: Platform
 
-  ) { }
+  ) { 
+    var user = firebase.auth().currentUser;
+    if(user==null){
+      this.navCtrl.setRoot(HomePage);
+    }
+
+  }
 
   test(){
     console.log("test");
@@ -32,9 +37,11 @@ export class LoginPage {
       })
     }
     else {
+      this.navCtrl.setRoot(HomePage);
       return this.afAuth.auth
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
         .then(res => console.log(res+"xxx"));
+        
     }
   }
 
