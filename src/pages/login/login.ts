@@ -28,7 +28,7 @@ export class LoginPage {
   }
 
   test(){
-    console.log("test");
+    console.log("test test");
   }
   loginFacebook() {
     if (this.platform.is('cordova')) {
