@@ -19,10 +19,11 @@ export class LoginPage {
     private platform: Platform
 
   ) { 
-    var user = firebase.auth().currentUser;
+    /*var user = firebase.auth().currentUser;
     if(user==null){ //ถ้ามีการล็อกอิน //ยังไม่ถูก
-      this.navCtrl.setRoot(HomePage);
-    }
+      console.log(user.uid);
+      //this.navCtrl.setRoot(HomePage);
+    }*/
 
   }
 
@@ -37,10 +38,11 @@ export class LoginPage {
       })
     }
     else {
-      this.navCtrl.setRoot(HomePage);
-      return this.afAuth.auth
-        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(res => console.log(res+"xxx"));
+      //this.navCtrl.setRoot(HomePage);
+      return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
+        if (res.operationType == 'signIn')
+        this.navCtrl.setRoot(HomePage);
+      });
         
     }
   }
