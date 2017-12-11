@@ -19,11 +19,7 @@ export class LoginPage {
     private platform: Platform
 
   ) { 
-    var user = firebase.auth().currentUser;
-    if(!user){ //ถ้ามีการล็อกอิน //ยังไม่ถูก
-      //console.log(user.uid);
-      this.navCtrl.setRoot(HomePage);
-    }
+   
 
   }
 
@@ -50,7 +46,14 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+   var user =  this.afAuth.auth.onAuthStateChanged(user => {
+      // var key__;
+       if (!user) {
+        // this.navCtrl.setRoot(LoginPage);
+       // console.log(user);
+       }
+       console.log(user);
+     });
+    }
 
 }
