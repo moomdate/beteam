@@ -3,5 +3,35 @@ page-login {
     *::-webkit-scrollbar {
       display: none;
     }
-    
+    .content{
+      background-color: #15212e;
+     
+      //beteam_logo.png
+    }
+    .input_login{
+      border-radius: 10px;
+      background-color: #3b550c;
+    }
+    .logoBeteam{
+      //background-color: #1b1b1b;  
+      //background-image: url("../assets/imgs/beteam_logo.png");
+      padding: 0px;
+      width: 100%;
+      
+     // height: 190px;
+    }
+    .descip{
+      color: #f7bcbc;
+    }
+    #rounded {
+      color:#f84444;
+      width: 100%;
+      height: 40px;
+      -moz-border-radius: 50px;
+      -webkit-border-radius: 50px;
+      border-radius: 30px;
+      margin-bottom: 10px;  
+  }
+   
+   
 }
