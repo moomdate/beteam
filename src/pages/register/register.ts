@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
+import { MenuPage } from '../menu/menu';
 
 /**
  * Generated class for the RegisterPage page.
@@ -17,36 +18,65 @@ import { AngularFireAuth } from "angularfire2/auth";
 export class RegisterPage {
   email: string;
   pass: string;
-  fullname:string;
+  fullname: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    public loadingCtrl: LoadingController,
+    private alertCtrl: AlertController
+
   ) {
   }
-
+  presentAlert(str: string, ms: string) {
+    let alert = this.alertCtrl.create({
+      title: str,
+      subTitle: ms,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
   }
   register() {
     console.log("register");
-    this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.pass).then(ok => {
-      console.log(ok.uid);
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
 
-      var user = ok;
+    try {
+      loading.present();
+      this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.pass).then(ok => {
+        console.log(ok.uid);
 
-      user.updateProfile({
-        displayName: this.fullname,
-        photoURL: "https://example.com/jane-q-user/profile.jpg"
-      }).then(function () {
-        console.log("update profile success");
-      }).catch(function (error) {
-        console.log("error while update");
-      });
+        var user = ok;
 
+        user.updateProfile({
+          displayName: this.fullname,
+          photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then(data => {
+          console.log("update profile success");
+          this.navCtrl.setRoot(MenuPage);
+        }).catch(error => {
+          this.presentAlert("error", error.message)
+          console.log("error while update");
+        });
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000);
 
-    }).catch(error => {
-      console.log("error");
-    })
+      }).catch(error => {
+        this.presentAlert("error", "please check your register field!!")
+        setTimeout(() => {
+          loading.dismiss();
+        }, 1000);
+      })
+    } catch (ex) {
+      setTimeout(() => {
+        loading.dismiss();
+      }, 1000);
+      this.presentAlert("error", ex.message)
+    }
   }
 }

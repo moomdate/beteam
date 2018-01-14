@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
-import { LoginPage } from '../login/login';
+import { ChangepasswordPage } from '../changepassword/changepassword';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the SettingsPage page.
@@ -16,23 +17,27 @@ import { LoginPage } from '../login/login';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams,
-     public authen:AngularFireAuth
+    public navParams: NavParams,
+    public authen: AngularFireAuth
   ) {
   }
-
+  gotoRepass() {
+    this.navCtrl.push(ChangepasswordPage);
+  }
+  gotoProfile(){
+    this.navCtrl.push(ProfilePage);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
-  signout(){
-    this.authen.auth.signOut().then(data=>{
+  signout() {
+    this.authen.auth.signOut().then(data => {
       console.log("ok");
       //  this.navCtrl.setRoot(LoginPage);
-        
-    }).catch(error=>{
+
+    }).catch(error => {
       console.log("sign out error");
     })
   }

@@ -10,6 +10,8 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { MenuPage } from '../pages/menu/menu';
 import { SettingsPage } from '../pages/settings/settings';
+import { ChangepasswordPage } from '../pages/changepassword/changepassword';
+import { ProfilePage } from '../pages/profile/profile';
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -26,7 +28,9 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     LoginPage,
     RegisterPage,
     MenuPage,
-    SettingsPage
+    SettingsPage,
+    ChangepasswordPage,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     LoginPage,
     RegisterPage,
     MenuPage,
-    SettingsPage
+    SettingsPage,
+    ChangepasswordPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

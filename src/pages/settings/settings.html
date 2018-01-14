@@ -7,12 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<button ion-button (click)="signout()" full>logout</button>
+  <ion-list >
+
+    <button ion-item (click)="gotoProfile()">
+      <ion-icon name="ios-person" item-start  color="regon"></ion-icon>
+      Profile
+    </button>
+
+    <button ion-item (click)="gotoRepass()">
+      <ion-icon name="ios-key" item-start  color="gold"></ion-icon>
+      Change Password
+    </button>
+  </ion-list>
+  <button ion-button (click)="signout()" full>logout</button>
 </ion-content>
